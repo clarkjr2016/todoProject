@@ -55,6 +55,7 @@ nav {
 .projects {
   display: flex;
   align-items: center;
+  margin: 1rem;
 }
 
 .projects img {
