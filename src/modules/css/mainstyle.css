@@ -1,8 +1,29 @@
+@font-face {
+  font-family: "Roboto-Regular";
+  src: url("../fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
+  font-family: "PlayfairDisplay-Regular";
+  src: url("../fonts/PlayfairDisplay-Regular.ttf");
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
+html,
+body {
+  height: 100vh;
+  font-family: "Roboto-Regular";
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+} /* this sets up the main element to be able to take up the full height of the viewport */
 
 header {
   background-color: hsl(220, 50%, 50%);
@@ -11,6 +32,36 @@ header {
   align-items: center;
 }
 
+header p {
+  font-size: clamp(1.5rem, 2vw, 2rem);
+}
+
 .to-do-icon {
   width: clamp(3rem, 50%, 4rem);
+}
+
+main {
+  display: flex;
+  flex: 1; /* this will make sure that the main element takes up the remaining space left */
+}
+
+nav {
+  border: 5px solid black;
+  display: inline-flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.projects {
+  display: flex;
+  align-items: center;
+}
+
+.projects img {
+  width: clamp(5rem, 5vw, 6rem);
+}
+
+section {
+  flex: 3;
+  border: 5px solid red;
 }
