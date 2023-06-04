@@ -39,5 +39,11 @@ export default function initialPage() {
   projectList[2].append(planned.image);
   projectList[2].append(planned.description);
 
+  const toDoHeader = document.createElement("h1");
+
+  toDoHeader.innerText = myDay.description.innerText;
+
+  toDoArea.appendChild(toDoHeader);
+
   // Next I will be adding the actual icons to the container element
 }
