@@ -1,7 +1,5 @@
 export default function initialPage() {
-  const sideBar = document.querySelector(".side-bar"); // selecting the nav element that already exists in the index.html folder
-
-  const toDoArea = document.querySelector(".to-do-area");
+  const sideBar = document.querySelector(".side-bar"); // selecting the nav element that already exists in the index.html file
 
   for (let i = 0; i < 3; i++) {
     const projectContainer = document.createElement("div");
@@ -11,39 +9,31 @@ export default function initialPage() {
 
   const projectList = sideBar.children; // creating a list of the div elements so that they can be more easily selected
 
-  const projectItem = function (picture, text) {
-    const image = document.createElement("img");
-    image.src = picture; // creating an immage from the source provided
-    const description = document.createElement("h2");
-    description.innerText = text; // creating an h2 element from the text provided
-
+  function projects(img, title) {
     return {
-      image: image,
-      description: description,
+      img: img,
+      title: title,
       toDos: [],
+      convertToElements: function () {
+        const imgElement = document.createElement("img");
+        imgElement.src = this.img; // creates the img based off the input of the object
+        const headerElement = document.createElement("h2");
+        headerElement.innerText = this.title;
+        return { imgElement, headerElement };
+      },
     };
-  }; // create a factory function to be able to create the projectItems
+  } // creates simple objects to represent different projects
 
-  const myDay = projectItem("../src/photos/laptop.svg", "My Day");
+  const myDay = projects("../src/photos/laptop.svg", "My Day"); // creating a myDay Object
+  const important = projects("../src/photos/trophy.svg", "Important"); // creating an important Object
+  const planned = projects("../src/photos/menu.svg", "Planned"); // creating a planned Object
 
-  const important = projectItem("../src/photos/trophy.svg", "Important");
+  projectList[0].appendChild(myDay.convertToElements().imgElement); //appending the img elment
+  projectList[0].appendChild(myDay.convertToElements().headerElement); //appending the header elment
 
-  const planned = projectItem("../src/photos/menu.svg", "Planned");
+  projectList[1].appendChild(important.convertToElements().imgElement); //appending the img elment
+  projectList[1].appendChild(important.convertToElements().headerElement); //appending the header elment
 
-  projectList[0].append(myDay.image);
-  projectList[0].append(myDay.description);
-
-  projectList[1].append(important.image);
-  projectList[1].append(important.description);
-
-  projectList[2].append(planned.image);
-  projectList[2].append(planned.description);
-
-  const toDoHeader = document.createElement("h1");
-
-  toDoHeader.innerText = myDay.description.innerText;
-
-  toDoArea.appendChild(toDoHeader);
-
-  // Next I will be adding the actual icons to the container element
-}
+  projectList[2].appendChild(planned.convertToElements().imgElement); //appending the img elment
+  projectList[2].appendChild(planned.convertToElements().headerElement); //appending the header elment
+} // creating a factory function for project list
