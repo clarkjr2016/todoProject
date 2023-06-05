@@ -1,6 +1,8 @@
 export default function initialPage() {
   const sideBar = document.querySelector(".side-bar"); // selecting the nav element that already exists in the index.html file
 
+  const projectHeader = document.querySelector(".project-header"); // selecting the area where the to-dos- will be populated;
+
   for (let i = 0; i < 3; i++) {
     const projectContainer = document.createElement("div");
     projectContainer.classList.add("projects");
@@ -36,4 +38,6 @@ export default function initialPage() {
 
   projectList[2].appendChild(planned.convertToElements().imgElement); //appending the img elment
   projectList[2].appendChild(planned.convertToElements().headerElement); //appending the header elment
+
+  projectHeader.innerText = myDay.convertToElements().headerElement.innerText; // setting the inital header to be the title of myDay
 } // creating a factory function for project list
