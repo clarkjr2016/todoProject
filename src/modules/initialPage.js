@@ -40,4 +40,31 @@ export default function initialPage() {
   projectList[2].appendChild(planned.convertToElements().headerElement); //appending the header elment
 
   projectHeader.innerText = myDay.convertToElements().headerElement.innerText; // setting the inital header to be the title of myDay
+
+  function returnTodaysDate() {
+    const today = new Date(); //creating a date object
+
+    //gathering the year, month, and day
+
+    const month = today.getMonth() + 1;
+    const year = today.getFullYear();
+    const day = today.getDate();
+
+    return `${month}-${day}-${year}`;
+  }
+
+  const dateHeader = document.querySelector(".date-header"); //selecting the h2 header element
+  dateHeader.innerText = returnTodaysDate(); // returns the text of todays date
+
+  const toDoItemsArea = document.querySelector("to-do-items-area"); // selecting the area where the to-dos will be created
+
+  let inputValue = document.querySelector(".input").value;
+
+  inputValue = "Hello";
+
+  function addToDo() {
+    console.log(inputValue);
+  }
+
+  addToDo();
 } // creating a factory function for project list
