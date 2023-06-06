@@ -1,4 +1,9 @@
 import "./modules/css/mainstyle.css";
-import initialPage from "./modules/initialPage.js";
+import toDoItems from "./modules/to-do-items.js";
 
-initialPage();
+const hello = toDoItems("Hello", "jewbfjke", 55555);
+
+hello.setTitle("Bye");
+
+console.log(hello.getTitle());
+console.log(hello);
