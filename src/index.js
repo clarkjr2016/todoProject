@@ -1,9 +1,18 @@
 import "./modules/css/mainstyle.css";
 import toDoItems from "./modules/to-do-items.js";
+import projects from "./modules/projects.js";
 
-const hello = toDoItems("Hello", "jewbfjke", 55555);
+const toDoItemArea = document.querySelector(".to-do-items-area"); // linking the section area on the HTML
 
-hello.setTitle("Bye");
+const input = document.querySelector(".input");
 
-console.log(hello.getTitle());
-console.log(hello);
+const toDoButton = document.querySelector(".to-do-button");
+
+function toDoCreation() {
+  const newToDoCreation = toDoItems(input.value, "", "4/11/1997");
+  const newTodo = document.createElement("div");
+  newTodo.innerText = newToDoCreation.title;
+  toDoItemArea.appendChild(newTodo);
+}
+
+toDoButton.addEventListener("click", toDoCreation);
