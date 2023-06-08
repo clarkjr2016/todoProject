@@ -24,5 +24,8 @@ export default function toDoItems(title, description, dueDate) {
     markComplete() {
       this.isComplete = true;
     },
+    addToDo(project) {
+      project.push(this);
+    },
   };
 }
