@@ -1,17 +1,16 @@
 import "./modules/css/mainstyle.css";
-import toDoItems from "./modules/to-do-items.js";
-import projects from "./modules/projects.js";
+import ToDoItems from "./modules/to-do-items.js";
+import Projects from "./modules/projects.js";
+import sideBar from "./modules/UI";
 
-const toDoItem1 = toDoItems(
-  "Test",
-  "Testing to see if I can append this to a project using an internal method",
-  4111997
-); // creating a to-do-item
+const sideBarObject = new sideBar(".side-bar"); // select the sidebar by instantiatong a class and calling the getClassName method on it.
 
-const project1 = projects("My Day"); // creating a project to append to.
+const myDay = new Projects("My Day"); // create a new project called My Day
 
-toDoItem1.addToDo(project1.getToDoItems());
+const important = new Projects("Important"); // create a new project called Important
 
-console.log(project1.getToDoItems());
+const planned = new Projects("Planned"); // create a new project called Planned
 
-console.log(project1);
+sideBarObject.addProject(myDay, important, planned); // add the projects to the sidebar
+
+console.log(sideBarObject.getProjects()); // check to see if the projects are added to the sidebar
