@@ -6,6 +6,10 @@ export default class Projects {
 
   toDoItems = []; // creating a property that is an empty array.
 
+  getPicture() {
+    return this.picture;
+  }
+
   getTitle() {
     return this.title;
   }

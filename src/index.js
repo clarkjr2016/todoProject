@@ -1,16 +1,24 @@
 import "./modules/css/mainstyle.css";
 import ToDoItems from "./modules/to-do-items.js";
 import Projects from "./modules/projects.js";
-import sideBar from "./modules/UI";
+import { sideBar, ToDoArea } from "./modules/UI";
 
-const sideBarObject = new sideBar(".side-bar"); // select the sidebar by instantiatong a class and calling the getClassName method on it.
+const sideBarObject = new sideBar(document.querySelector(".side-bar")); // select the sidebar by instantiatong a class and calling the getClassName method on it.
 
-const myDay = new Projects("My Day"); // create a new project called My Day
+console.log(sideBarObject); // check to see if the sidebar is selected
 
-const important = new Projects("Important"); // create a new project called Important
+const myDay = new Projects("My Day", "../src/photos/laptop.svg"); // create a new project called My Day
 
-const planned = new Projects("Planned"); // create a new project called Planned
+const important = new Projects("Important", "../src/photos/trophy.svg"); // create a new project called Important
 
-sideBarObject.addProject(myDay, important, planned); // add the projects to the sidebar
+const planned = new Projects("Planned", "../src/photos/menu.svg"); // create a new project called Planned
 
-console.log(sideBarObject.getProjects()); // check to see if the projects are added to the sidebar
+sideBarObject.addProject(myDay); // add the projects to the sidebar
+
+sideBarObject.addProject(important);
+
+sideBarObject.addProject(planned);
+
+sideBarObject.getProjects().forEach((project) => {
+  sideBarObject.getDOMElement(project);
+}); // loop through the projects and call the getDOMElement method on each project
