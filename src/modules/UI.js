@@ -40,30 +40,7 @@ class ToDoArea {
   }
 }
 
-class addProjectButton {
-  constructor(buttonName, src = "photos/plus.svg") {
-    this.buttonName = buttonName;
-    this.src = src;
-  } // constructor takes in the button name as an object
-
-  render(targetElement) {
-    const addButtonContainer = document.createElement("div"); // create a container div element
-    addButtonContainer.classList.add("project-button-container"); // add a class to the button container elemment
-
-    const addButtonImg = document.createElement("img"); // create an image element
-    addButtonImg.src = this.src; // set the image source to the src property
-
-    const addButtonTitle = document.createElement("h2"); // create a h2 element
-    addButtonTitle.textContent = this.buttonName; // set the text content to the button name property
-
-    addButtonContainer.appendChild(addButtonImg); // append image to button container
-    addButtonContainer.appendChild(addButtonTitle); // append title to button container
-
-    targetElement.appendChild(addButtonContainer); // append button container to target element
-  } // method to create a div element and append it to the sidebar
-}
 module.exports = {
   sideBar,
   ToDoArea,
-  addProjectButton,
 };

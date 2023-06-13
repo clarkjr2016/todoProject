@@ -1,7 +1,7 @@
 import "./modules/css/mainstyle.css";
 import ToDoItems from "./modules/to-do-items.js";
-import Projects from "./modules/projects.js";
-import { sideBar, ToDoArea, addProjectButton } from "./modules/UI";
+import { Projects, addProjectButton } from "./modules/projects.js";
+import { sideBar, ToDoArea } from "./modules/UI";
 
 const sideBarObject = new sideBar(document.querySelector(".side-bar")); // select the sidebar by instantiatong a class and calling the getClassName method on it.
 
@@ -23,7 +23,7 @@ sideBarObject.getProjects().forEach((project) => {
   sideBarObject.getDOMElement(project);
 }); // loop through the projects and call the getDOMElement method on each project to append them to the sidebar
 
-const addProjectBtn = new addProjectButton("Add Project"); // create a new button called Add Project
+const addProjectBtn = new addProjectButton("Add Project", sideBarObject); // create a new button called Add Project
 
 addProjectBtn.render(document.querySelector(".side-bar")); // render the button to the sidebar
 
