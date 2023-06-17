@@ -62,7 +62,7 @@ class CreatedProjects extends Projects {
       const projectElementTitle = document.createElement("h2"); // create a h2 element
       projectElementTitle.textContent = this.getTitle(); // set the text content to the project title
 
-      sideBar.getClassName().appendChild(projectElementContainer); // append div container to sidebar
+      sideBar.getClassName().children[2].after(projectElementContainer); // append div container after the add project button
 
       projectElementContainer.appendChild(projectElementImg); // append image to div container
 
@@ -72,6 +72,10 @@ class CreatedProjects extends Projects {
         const X = document.createElement("h1");
         X.innerText = "X";
         projectElementContainer.appendChild(X);
+
+        X.addEventListener("click", function () {
+          sideBar.getClassName().removeChild(projectElementContainer);
+        });
       });
 
       projectElementContainer.addEventListener("mouseleave", function () {
@@ -88,8 +92,8 @@ class CreatedProjects extends Projects {
 class addProjectButton {
   constructor(buttonName, sideBarObject, src = "../src/photos/plus.svg") {
     this.buttonName = buttonName;
-    this.src = src;
-    this.sideBarObject = sideBarObject;
+    this.src = src; //
+    this.sideBarObject = sideBarObject; // Update this line to take in the sidebar object. This is needed
   } // constructor takes in the button name as an object
 
   render(targetElement) {
@@ -106,14 +110,14 @@ class addProjectButton {
     addButtonContainer.appendChild(addButtonTitle); // append title to button container
 
     targetElement.appendChild(addButtonContainer); // append button container to target element
-    const self = this;
+    const self = this; // this maintains the scope of the keyword this to be used in the event listener
 
     addButtonContainer.addEventListener("click", function addProject() {
       const namePrompt = prompt(
         "What would you like the name of this project to be?"
       );
       const newProjObj = new CreatedProjects(namePrompt);
-      newProjObj.render(self.sideBarObject); // Update this line to use self.sideBarObject
+      newProjObj.render(self.sideBarObject);
     });
   } // method to create a div element and append it to the sidebar
 }
