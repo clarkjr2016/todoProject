@@ -5,9 +5,14 @@ class Projects {
     // constructor takes in a title and a picture src
     this.title = title; // creating a property that is the title of the project
     this.picture = picture; // creating a property that is the picture src of the project
+    this.printObject();
   }
 
   toDoItems = []; // creating a property that is an empty array.
+
+  getUIcontainer() {
+    return this.uiElement;
+  }
 
   getPicture() {
     return this.picture; // getter method to return the picture src of the project
@@ -28,22 +33,26 @@ class Projects {
   }
 
   render(sideBar) {
-    {
-      const projectElementContainer = document.createElement("div"); // create a container element
-      projectElementContainer.classList.add("projects"); // add a class to the div element
+    const projectElementContainer = document.createElement("div"); // create a container element
+    projectElementContainer.classList.add("projects"); // add a class to the div element
 
-      const projectElementImg = document.createElement("img"); // create an image element
-      projectElementImg.src = this.getPicture(); // set the image source to the project picture
+    const projectElementImg = document.createElement("img"); // create an image element
+    projectElementImg.src = this.getPicture(); // set the image source to the project picture
 
-      const projectElementTitle = document.createElement("h2"); // create a h2 element
-      projectElementTitle.textContent = this.getTitle(); // set the text content to the project title
+    const projectElementTitle = document.createElement("h2"); // create a h2 element
+    projectElementTitle.textContent = this.getTitle(); // set the text content to the project title
 
-      sideBar.getClassName().appendChild(projectElementContainer); // append div container to sidebar
+    sideBar.getClassName().appendChild(projectElementContainer); // append div container to sidebar
 
-      projectElementContainer.appendChild(projectElementImg); // append image to div container
+    projectElementContainer.appendChild(projectElementImg); // append image to div container
 
-      projectElementContainer.appendChild(projectElementTitle); // append title to div container
-    } // method to create a project element and append it to the sidebar
+    projectElementContainer.appendChild(projectElementTitle); // append title to div container1
+
+    // method to create a project element and append it to the sidebar
+  }
+
+  printObject() {
+    console.log(this.title);
   }
 } // Class used to construct the original 3 projects that will appear on the sidebar
 
@@ -141,12 +150,23 @@ class addProjectButton {
       prompt_button_container.appendChild(buttonContainer); // append the button container to the target element
 
       submitButton.addEventListener("click", () => {
-        const newProjObj = new CreatedProjects(titlePrompt.value);
+        const newProjObj = new CreatedProjects(titlePrompt.value); // creates a new object with title
 
+        if (!titlePrompt.value == "") {
+          prompt_button_container.remove();
+
+          newProjObj.render(this.sideBarObject);
+
+          addButtonContainer.classList.add("projects");
+          addButtonContainer.classList.remove("hidden");
+        } else {
+          titlePrompt.style.border = "1px solid red";
+          titlePrompt.placeholder = "Input value cannot be empty";
+        }
+      });
+
+      cancelButton.addEventListener("click", () => {
         prompt_button_container.remove();
-
-        newProjObj.render(this.sideBarObject);
-
         addButtonContainer.classList.add("projects");
         addButtonContainer.classList.remove("hidden");
       });

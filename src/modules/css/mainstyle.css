@@ -57,6 +57,7 @@ nav {
   align-items: center;
   margin: 1rem;
   justify-content: space-evenly;
+  cursor: pointer;
 }
 
 .projects img {
