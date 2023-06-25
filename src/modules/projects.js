@@ -45,7 +45,7 @@ class Projects {
       projectElementContainer.appendChild(projectElementTitle); // append title to div container
     } // method to create a project element and append it to the sidebar
   }
-}
+} // Class used to construct the original 3 projects that will appear on the sidebar
 
 class CreatedProjects extends Projects {
   constructor(title) {
@@ -87,7 +87,7 @@ class CreatedProjects extends Projects {
       });
     } // method to create a project element and append it to the sidebar
   }
-}
+} // this class is used to create projects that are created by the user. This is an extension of the projects class
 
 class addProjectButton {
   constructor(buttonName, sideBarObject, src = "../src/photos/plus.svg") {
@@ -112,15 +112,47 @@ class addProjectButton {
     targetElement.appendChild(addButtonContainer); // append button container to target element
     const self = this; // this maintains the scope of the keyword this to be used in the event listener
 
-    addButtonContainer.addEventListener("click", function addProject() {
-      const namePrompt = prompt(
-        "What would you like the name of this project to be?"
-      );
-      const newProjObj = new CreatedProjects(namePrompt);
-      newProjObj.render(self.sideBarObject);
-    });
+    addButtonContainer.addEventListener("click", () => {
+      addButtonContainer.classList.add("hidden"); // remove the add project button
+
+      const prompt_button_container = document.createElement("div");
+      prompt_button_container.classList.add("prompt_button_container");
+
+      const titlePrompt = document.createElement("input"); // create an input element
+      titlePrompt.setAttribute("type", "text"); // set the type of the input element to text
+      titlePrompt.setAttribute("placeholder", "Project Name"); // set the placeholder of the input element to project name
+      titlePrompt.classList.add("project_input");
+
+      const submitButton = document.createElement("button"); // create a button element
+      submitButton.textContent = "Ok"; // set the text content of the button to submit
+
+      const cancelButton = document.createElement("button"); // create a button element
+      cancelButton.textContent = "Cancel"; // set the text content of the button to cancel
+
+      const buttonContainer = document.createElement("div"); // create a div element
+      buttonContainer.classList.add("buttonContainer"); // add a class to the div element
+
+      buttonContainer.appendChild(submitButton); // append the submit button to the div element
+      buttonContainer.appendChild(cancelButton); // append the cancel button to the div element
+
+      targetElement.appendChild(prompt_button_container);
+
+      prompt_button_container.appendChild(titlePrompt); // append the input element to the target element
+      prompt_button_container.appendChild(buttonContainer); // append the button container to the target element
+
+      submitButton.addEventListener("click", () => {
+        const newProjObj = new CreatedProjects(titlePrompt.value);
+
+        prompt_button_container.remove();
+
+        newProjObj.render(this.sideBarObject);
+
+        addButtonContainer.classList.add("projects");
+        addButtonContainer.classList.remove("hidden");
+      });
+    }); // utilize arrow function to maintain scope of "this" keyword
   } // method to create a div element and append it to the sidebar
-}
+} // this class is used to create the add project button which allows the user to create a new project
 
 module.exports = {
   addProjectButton,
