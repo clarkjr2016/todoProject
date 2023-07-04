@@ -32,3 +32,5 @@ const addProjectBtn = new addProjectButton("Add Project", sideBarObject); // cre
 addProjectBtn.render(document.querySelector(".side-bar")); // render the button to the sidebar
 
 console.log(addProjectBtn); // check to see if the button is created
+
+const toDoItemArea = new ToDoArea();

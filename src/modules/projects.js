@@ -1,18 +1,15 @@
+import { ToDoArea } from "./UI";
+
 const { sideBar } = require("./UI"); // importing sidebar Object class
 
-class Projects {
+export class Projects {
   constructor(title, picture = "../src/photos/menu.svg") {
     // constructor takes in a title and a picture src
     this.title = title; // creating a property that is the title of the project
     this.picture = picture; // creating a property that is the picture src of the project
-    this.printObject();
   }
 
-  toDoItems = []; // creating a property that is an empty array.
-
-  getUIcontainer() {
-    return this.uiElement;
-  }
+  toDoItems = []; // creating a property that is an empty array for future to-do-items to be placed in
 
   getPicture() {
     return this.picture; // getter method to return the picture src of the project
@@ -48,15 +45,17 @@ class Projects {
 
     projectElementContainer.appendChild(projectElementTitle); // append title to div container1
 
-    // method to create a project element and append it to the sidebar
-  }
+    projectElementContainer.addEventListener("click", () => {
+      const toDoAreaProjectHeader = document.querySelector(".project-header");
 
-  printObject() {
-    console.log(this.title);
+      toDoAreaProjectHeader.innerText = projectElementTitle.textContent;
+    }); // this allows for the projecs attribute to be refelcted in the to-do-area
+
+    // method to create a project element and append it to the sidebar
   }
 } // Class used to construct the original 3 projects that will appear on the sidebar
 
-class CreatedProjects extends Projects {
+export class CreatedProjects extends Projects {
   constructor(title) {
     super(title);
   }
@@ -77,12 +76,19 @@ class CreatedProjects extends Projects {
 
       projectElementContainer.appendChild(projectElementTitle); // append title to div container
 
+      projectElementContainer.addEventListener("click", () => {
+        let toDoAreaProjectHeader = document.querySelector(".project-header");
+
+        toDoAreaProjectHeader.innerText = projectElementTitle.textContent;
+      }); // this allows for the projecs attribute to be refelcted in the to-do-area
+
       projectElementContainer.addEventListener("mouseenter", function () {
         const X = document.createElement("h1");
         X.innerText = "X";
         projectElementContainer.appendChild(X);
 
         X.addEventListener("click", function () {
+          projectElementTitle.textContent = "";
           sideBar.getClassName().removeChild(projectElementContainer);
         });
       });
@@ -98,7 +104,7 @@ class CreatedProjects extends Projects {
   }
 } // this class is used to create projects that are created by the user. This is an extension of the projects class
 
-class addProjectButton {
+export class addProjectButton {
   constructor(buttonName, sideBarObject, src = "../src/photos/plus.svg") {
     this.buttonName = buttonName;
     this.src = src; //
@@ -173,9 +179,3 @@ class addProjectButton {
     }); // utilize arrow function to maintain scope of "this" keyword
   } // method to create a div element and append it to the sidebar
 } // this class is used to create the add project button which allows the user to create a new project
-
-module.exports = {
-  addProjectButton,
-  Projects,
-  CreatedProjects,
-};

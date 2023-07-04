@@ -1,4 +1,7 @@
-class sideBar {
+import { Projects } from "./projects";
+import ToDoItems from "./to-do-items";
+
+export class sideBar {
   constructor(className) {
     // constructor takes in the class name of the sidebar element as an object
     this.className = className; // creating a property that is the class name of the sidebar element
@@ -34,13 +37,9 @@ class sideBar {
   } // method to create a project element and append it to the sidebar
 }
 
-class ToDoArea {
-  constructor(className) {
-    this.className = className;
+export class ToDoArea {
+  constructor() {
+    this.header = document.querySelector(".project-header");
+    this.date = document.querySelector("date-header");
   }
 }
-
-module.exports = {
-  sideBar,
-  ToDoArea,
-};
