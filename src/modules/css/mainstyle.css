@@ -36,6 +36,18 @@ header p {
   font-size: clamp(1.5rem, 2vw, 2rem);
 }
 
+.to-do-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 3;
+}
+
+.to-do-items-area {
+  height: 0;
+}
+
 .to-do-icon {
   width: clamp(3rem, 50%, 4rem);
 }
@@ -62,11 +74,6 @@ nav {
 
 .projects img {
   width: clamp(5rem, 5vw, 6rem);
-}
-
-section {
-  flex: 3;
-  border: 5px solid red;
 }
 
 .project_input {

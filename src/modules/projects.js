@@ -88,7 +88,8 @@ export class CreatedProjects extends Projects {
         projectElementContainer.appendChild(X);
 
         X.addEventListener("click", function () {
-          projectElementTitle.textContent = "";
+          projectElementTitle.textContent = ""; // set the text content to the project title to empty when x is clicked so that to-do area is blank
+
           sideBar.getClassName().removeChild(projectElementContainer);
         });
       });
