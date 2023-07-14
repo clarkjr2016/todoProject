@@ -1,4 +1,5 @@
 import { ToDoArea } from "./UI";
+import { getTodaysDate } from "./date";
 
 const { sideBar } = require("./UI"); // importing sidebar Object class
 
@@ -47,6 +48,9 @@ export class Projects {
 
     projectElementContainer.addEventListener("click", () => {
       const toDoAreaProjectHeader = document.querySelector(".project-header");
+      let toDoAreaDateHeader = document.querySelector(".date-header");
+
+      toDoAreaDateHeader.innerText = getTodaysDate();
 
       toDoAreaProjectHeader.innerText = projectElementTitle.textContent;
     }); // this allows for the projecs attribute to be refelcted in the to-do-area
@@ -78,6 +82,8 @@ export class CreatedProjects extends Projects {
 
       projectElementContainer.addEventListener("click", () => {
         let toDoAreaProjectHeader = document.querySelector(".project-header");
+        let toDoAreaDateHeader = document.querySelector(".date-header");
+        toDoAreaDateHeader.innerText = getTodaysDate();
 
         toDoAreaProjectHeader.innerText = projectElementTitle.textContent;
       }); // this allows for the projecs attribute to be refelcted in the to-do-area
