@@ -1,4 +1,5 @@
 import "./modules/css/mainstyle.css";
+import { getTodaysDate } from "./modules/date";
 import ToDoItems from "./modules/to-do-items.js";
 import {
   Projects,
@@ -6,6 +7,9 @@ import {
   CreatedProjects,
 } from "./modules/projects.js";
 import { sideBar, ToDoArea } from "./modules/UI";
+
+let toDoDateArea = document.querySelector(".date-header"); // select the date area
+toDoDateArea.innerText = getTodaysDate(); // set the date area to the current date
 
 const sideBarObject = new sideBar(document.querySelector(".side-bar")); // select the sidebar by instantiatong a class and calling the getClassName method on it.
 

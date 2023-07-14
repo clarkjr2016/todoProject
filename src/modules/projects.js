@@ -65,6 +65,7 @@ export class CreatedProjects extends Projects {
   }
   render(sideBar) {
     {
+      const toDoArea = document.querySelector(".to-do-area");
       const projectElementContainer = document.createElement("div"); // create a container element
       projectElementContainer.classList.add("projects"); // add a class to the div element
 
@@ -95,7 +96,7 @@ export class CreatedProjects extends Projects {
 
         X.addEventListener("click", function () {
           projectElementTitle.textContent = ""; // set the text content to the project title to empty when x is clicked so that to-do area is blank
-
+          toDoArea.style.visibility = "hidden"; //this sets the visibility to hidden but doesn't bring it back when another project is clicked
           sideBar.getClassName().removeChild(projectElementContainer);
         });
       });
