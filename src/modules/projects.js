@@ -31,6 +31,7 @@ export class Projects {
   }
 
   render(sideBar) {
+    const toDoArea = document.querySelector(".to-do-area"); // this selects the to-do-area element so that it can be manipulated
     const projectElementContainer = document.createElement("div"); // create a container element
     projectElementContainer.classList.add("projects"); // add a class to the div element
 
@@ -47,6 +48,7 @@ export class Projects {
     projectElementContainer.appendChild(projectElementTitle); // append title to div container1
 
     projectElementContainer.addEventListener("click", () => {
+      toDoArea.style.visibility = "visible";
       const toDoAreaProjectHeader = document.querySelector(".project-header");
       let toDoAreaDateHeader = document.querySelector(".date-header");
 
@@ -65,7 +67,7 @@ export class CreatedProjects extends Projects {
   }
   render(sideBar) {
     {
-      const toDoArea = document.querySelector(".to-do-area");
+      const toDoArea = document.querySelector(".to-do-area"); // this selects the to-do-area element so that it can be manipulated
       const projectElementContainer = document.createElement("div"); // create a container element
       projectElementContainer.classList.add("projects"); // add a class to the div element
 
@@ -82,11 +84,12 @@ export class CreatedProjects extends Projects {
       projectElementContainer.appendChild(projectElementTitle); // append title to div container
 
       projectElementContainer.addEventListener("click", () => {
+        toDoArea.style.visibility = "visible";
         let toDoAreaProjectHeader = document.querySelector(".project-header");
         let toDoAreaDateHeader = document.querySelector(".date-header");
         toDoAreaDateHeader.innerText = getTodaysDate();
-
         toDoAreaProjectHeader.innerText = projectElementTitle.textContent;
+        console.log("I am the parent");
       }); // this allows for the projecs attribute to be refelcted in the to-do-area
 
       projectElementContainer.addEventListener("mouseenter", function () {
@@ -94,10 +97,11 @@ export class CreatedProjects extends Projects {
         X.innerText = "X";
         projectElementContainer.appendChild(X);
 
-        X.addEventListener("click", function () {
-          projectElementTitle.textContent = ""; // set the text content to the project title to empty when x is clicked so that to-do area is blank
+        X.addEventListener("click", function (e) {
           toDoArea.style.visibility = "hidden"; //this sets the visibility to hidden but doesn't bring it back when another project is clicked
           sideBar.getClassName().removeChild(projectElementContainer);
+          e.stopPropagation(); // this prevents the element from bubbling up to the parent element and allows for this event listener to trigger without triggering the parent event listener
+          console.log("I am the child");
         });
       });
 
