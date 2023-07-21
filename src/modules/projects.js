@@ -48,7 +48,7 @@ export class Projects {
     projectElementContainer.appendChild(projectElementTitle); // append title to div container1
 
     projectElementContainer.addEventListener("click", () => {
-      toDoArea.style.visibility = "visible";
+      toDoArea.style.visibility = "visible"; // this allows for the to-do-area to be visible when a project is clicked
       const toDoAreaProjectHeader = document.querySelector(".project-header");
       let toDoAreaDateHeader = document.querySelector(".date-header");
 
@@ -84,12 +84,11 @@ export class CreatedProjects extends Projects {
       projectElementContainer.appendChild(projectElementTitle); // append title to div container
 
       projectElementContainer.addEventListener("click", () => {
-        toDoArea.style.visibility = "visible";
-        let toDoAreaProjectHeader = document.querySelector(".project-header");
-        let toDoAreaDateHeader = document.querySelector(".date-header");
-        toDoAreaDateHeader.innerText = getTodaysDate();
-        toDoAreaProjectHeader.innerText = projectElementTitle.textContent;
-        console.log("I am the parent");
+        toDoArea.style.visibility = "visible"; // this allows for the to-do-area to be visible when a project is clicked
+        let toDoAreaProjectHeader = document.querySelector(".project-header"); // this selects the project header element so that it can be manipulated
+        let toDoAreaDateHeader = document.querySelector(".date-header"); // this selects the date header element so that it can be manipulated
+        toDoAreaDateHeader.innerText = getTodaysDate(); // this sets the date header to the current date
+        toDoAreaProjectHeader.innerText = projectElementTitle.textContent; // this sets the project header to the project title
       }); // this allows for the projecs attribute to be refelcted in the to-do-area
 
       projectElementContainer.addEventListener("mouseenter", function () {
@@ -101,7 +100,6 @@ export class CreatedProjects extends Projects {
           toDoArea.style.visibility = "hidden"; //this sets the visibility to hidden but doesn't bring it back when another project is clicked
           sideBar.getClassName().removeChild(projectElementContainer);
           e.stopPropagation(); // this prevents the element from bubbling up to the parent element and allows for this event listener to trigger without triggering the parent event listener
-          console.log("I am the child");
         });
       });
 

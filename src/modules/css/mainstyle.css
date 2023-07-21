@@ -67,13 +67,18 @@ nav {
 .projects {
   display: flex;
   align-items: center;
-  margin: 1rem;
-  justify-content: space-evenly;
   cursor: pointer;
+  justify-content: space-evenly;
 }
 
 .projects img {
-  width: clamp(5rem, 5vw, 6rem);
+  width: clamp(100px, 5vw, 200px);
+}
+
+.projects h2 {
+  width: clamp(150px, 5vw, 200px);
+  text-align: center;
+  overflow-wrap: break-word;
 }
 
 .project_input {
