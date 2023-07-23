@@ -41,5 +41,24 @@ export class ToDoArea {
   constructor() {
     this.header = document.querySelector(".project-header");
     this.date = document.querySelector("date-header");
+    this.area = document.querySelector(".to-do-items-area");
+    this.input = document.querySelector(".input");
+    this.button = document.querySelector(".to-do-button");
+  }
+
+  getInput() {
+    return this.input.value;
+  }
+
+  getButton() {
+    return this.button;
+  }
+
+  render() {
+    const button = this.getButton(); // get the button element
+    button.addEventListener("click", () => {
+      const inputValue = this.getInput(); // get the input element
+      console.log(inputValue);
+    });
   }
 }
