@@ -1,27 +1,23 @@
+import { getTodaysDate } from "./date";
+
 export default class ToDoItems {
-  constructor(title, description, dueDate) {
-    this.title = title;
-    this.description = description;
-    this.dueDate = dueDate;
+  constructor(description, date = getTodaysDate()) {
+    this.description = description; // this is the text of the to-do-item generated from user input
+    this.date = date; // this is the date that is going to be created on the to-do list based off the date that it was created.
   }
 
-  getTitle() {
-    return this.title;
-  }
   getDescription() {
     return this.description;
   }
-  getDueDate() {
-    return this.dueDate;
+  getDate() {
+    return this.date;
   }
-  setTitle(newTitle) {
-    this.title = newTitle;
-  } // method to be able to change the to-do title
+
   setDescription(newDescription) {
     this.description = newDescription;
   }
-  setDueDate(newDueDate) {
-    this.dueDate = newDueDate;
+  setDueDate(newDate) {
+    this.date = newDate;
   }
   markComplete() {
     this.isComplete = true;

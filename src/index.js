@@ -37,8 +37,8 @@ addProjectBtn.render(document.querySelector(".side-bar")); // render the button 
 
 console.log(addProjectBtn); // check to see if the button is created
 
-const toDoItemArea = new ToDoArea();
+const toDoItemArea = new ToDoArea(); // create a new to-do area
 
 console.log(toDoItemArea.getButton());
 
-toDoItemArea.render();
+toDoItemArea.render(); // render the to-do area

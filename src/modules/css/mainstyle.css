@@ -77,7 +77,7 @@ nav {
 }
 
 .projects img {
-  width: clamp(150px, 5vw, 200px);
+  width: clamp(5rem, 5vw, 7rem);
 }
 
 .projects h2 {

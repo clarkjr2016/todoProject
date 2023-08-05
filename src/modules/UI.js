@@ -54,11 +54,12 @@ export class ToDoArea {
     return this.button;
   }
 
-  render() {
+  render(sideBar) {
     const button = this.getButton(); // get the button element
     button.addEventListener("click", () => {
       const inputValue = this.getInput(); // get the input element
-      console.log(inputValue);
+      const toDoItem = new ToDoItems(inputValue); // this creates the to-do items
+      console.log(sideBar);
     });
   }
 }

@@ -8,6 +8,7 @@ export class Projects {
     // constructor takes in a title and a picture src
     this.title = title; // creating a property that is the title of the project
     this.picture = picture; // creating a property that is the picture src of the project
+    this.isActive = false;
   }
 
   toDoItems = []; // creating a property that is an empty array for future to-do-items to be placed in
@@ -30,6 +31,18 @@ export class Projects {
     sideBar.push(this);
   }
 
+  getActiveStatus() {
+    return this.isActive;
+  }
+
+  changeActiveStatusToTrue() {
+    this.isActive = true;
+  }
+
+  changeActiveStatusToFalse() {
+    this.isActive = false;
+  }
+
   render(sideBar) {
     const toDoArea = document.querySelector(".to-do-area"); // this selects the to-do-area element so that it can be manipulated
     const projectElementContainer = document.createElement("div"); // create a container element
@@ -47,7 +60,19 @@ export class Projects {
 
     projectElementContainer.appendChild(projectElementTitle); // append title to div container1
 
-    projectElementContainer.addEventListener("click", () => {
+    projectElementContainer.addEventListener("click", (e) => {
+      const projects = sideBar.getProjects(); // this is a collection of the project elements created
+      console.log(e);
+
+      projects.forEach((project) => {
+        if (project.title === e.target.innerText) {
+          project.isActive = true;
+        } else {
+          project.isActive = false;
+        }
+        console.log(projects);
+      });
+
       toDoArea.style.visibility = "visible"; // this allows for the to-do-area to be visible when a project is clicked
       const toDoAreaProjectHeader = document.querySelector(".project-header");
       let toDoAreaDateHeader = document.querySelector(".date-header");
@@ -83,7 +108,19 @@ export class CreatedProjects extends Projects {
 
       projectElementContainer.appendChild(projectElementTitle); // append title to div container
 
-      projectElementContainer.addEventListener("click", () => {
+      projectElementContainer.addEventListener("click", (e) => {
+        const projects = sideBar.getProjects(); // this is a collection of the project elements created
+        console.log(e);
+
+        projects.forEach((project) => {
+          if (project.title === e.target.innerText) {
+            project.isActive = true;
+          } else {
+            project.isActive = false;
+          }
+          console.log(projects);
+        });
+
         toDoArea.style.visibility = "visible"; // this allows for the to-do-area to be visible when a project is clicked
         let toDoAreaProjectHeader = document.querySelector(".project-header"); // this selects the project header element so that it can be manipulated
         let toDoAreaDateHeader = document.querySelector(".date-header"); // this selects the date header element so that it can be manipulated
@@ -179,6 +216,8 @@ export class addProjectButton {
           titlePrompt.style.border = "1px solid red";
           titlePrompt.placeholder = "Input value cannot be empty";
         }
+
+        this.sideBarObject.addProject(newProjObj); // this adds the newly created object to the siedebarObjects list
       });
 
       cancelButton.addEventListener("click", () => {
