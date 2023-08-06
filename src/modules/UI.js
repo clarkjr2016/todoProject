@@ -1,5 +1,6 @@
 import { Projects } from "./projects";
 import ToDoItems from "./to-do-items";
+import { sideBarObject } from "../index"; // this imports the sideBarObject from the index.js file
 
 export class sideBar {
   constructor(className) {
@@ -50,16 +51,34 @@ export class ToDoArea {
     return this.input.value;
   }
 
+  setInput(newInputValue) {
+    this.input.value = newInputValue;
+  }
+
   getButton() {
     return this.button;
   }
 
-  render(sideBar) {
+  render() {
     const button = this.getButton(); // get the button element
     button.addEventListener("click", () => {
       const inputValue = this.getInput(); // get the input element
       const toDoItem = new ToDoItems(inputValue); // this creates the to-do items
-      console.log(sideBar);
+      const projects = sideBarObject.getProjects(); // this selects all the projects located within the sidebar object
+      projects.forEach((project) => {
+        if (project.isActive == true) {
+          project.toDoItems.push(toDoItem);
+        } // this pushes the recently created to-do-item into the appropriate "active" project
+      });
+      this.setInput(""); // this empties the input value area text after the button has been pressed.
+      const inputElement = document.createElement("div"); // creates a div element that will store the text and date
+      const inputText = document.createElement("p"); //creates a paragraph element for the to--do-item description text
+      const inputDate = document.createElement("p"); // creates a paragraph element for the to-do-item date
+      inputText.textContent = toDoItem.getDescription(); // sets the text content of the paragraph element to the to-do-item description
+      inputDate.textContent = toDoItem.getDate(); // sets the text content of the paragraph element to the to-do-item date
+      inputElement.appendChild(inputText); // appends the text to the div element
+      inputElement.appendChild(inputDate); // appends the date to the div element
+      this.area.appendChild(inputElement); // appends the div element to the to-do-items-area
     });
   }
 }

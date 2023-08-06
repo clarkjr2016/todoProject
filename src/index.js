@@ -11,11 +11,11 @@ import { sideBar, ToDoArea } from "./modules/UI";
 let toDoDateArea = document.querySelector(".date-header"); // select the date area
 toDoDateArea.innerText = getTodaysDate(); // set the date area to the current date
 
-const sideBarObject = new sideBar(document.querySelector(".side-bar")); // select the sidebar by instantiatong a class and calling the getClassName method on it.
+export const sideBarObject = new sideBar(document.querySelector(".side-bar")); // select the sidebar by instantiatong a class and calling the getClassName method on it.
 
 console.log(sideBarObject); // check to see if the sidebar is selected
 
-const myDay = new Projects("My Day", "../src/photos/laptop.svg"); // create a new project called My Day
+const myDay = new Projects("My Day", "../src/photos/laptop.svg", true); // create a new project called My Day, this one is set to true from the beginning in case a user doesn't pick another project
 
 const important = new Projects("Important", "../src/photos/trophy.svg"); // create a new project called Important
 

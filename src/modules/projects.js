@@ -4,11 +4,11 @@ import { getTodaysDate } from "./date";
 const { sideBar } = require("./UI"); // importing sidebar Object class
 
 export class Projects {
-  constructor(title, picture = "../src/photos/menu.svg") {
+  constructor(title, picture = "../src/photos/menu.svg", isActive = false) {
     // constructor takes in a title and a picture src
     this.title = title; // creating a property that is the title of the project
     this.picture = picture; // creating a property that is the picture src of the project
-    this.isActive = false;
+    this.isActive = isActive;
   }
 
   toDoItems = []; // creating a property that is an empty array for future to-do-items to be placed in
@@ -62,7 +62,6 @@ export class Projects {
 
     projectElementContainer.addEventListener("click", (e) => {
       const projects = sideBar.getProjects(); // this is a collection of the project elements created
-      console.log(e);
 
       projects.forEach((project) => {
         if (project.title === e.target.innerText) {
@@ -71,7 +70,7 @@ export class Projects {
           project.isActive = false;
         }
         console.log(projects);
-      });
+      }); // this iterates through each project and compares the title of the clicked on DOM Element to the title of the project, they should be the same so it chamhes the actve status of the selected element to true and the rest to false.
 
       toDoArea.style.visibility = "visible"; // this allows for the to-do-area to be visible when a project is clicked
       const toDoAreaProjectHeader = document.querySelector(".project-header");
