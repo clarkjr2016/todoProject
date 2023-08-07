@@ -72,11 +72,8 @@ export class ToDoArea {
       projects.forEach((project) => {
         if (project.isActive == true) {
           project.toDoItems.push(toDoItem);
-          project.toDoItems.forEach(
-            (toDoItem) => (toDoItem.projectAssignment = project.getTitle())
-          );
-        } // this pushes the recently created to-do-item into the appropriate "active" project
-      });
+        }
+      }); // this pushes the recently created to-do-item into the appropriate "active" project
       this.setInput(""); // this empties the input value area text after the button has been pressed.
       const inputElement = document.createElement("div"); // creates a div element that will store the text and date
       const inputText = document.createElement("p"); //creates a paragraph element for the to--do-item description text
@@ -89,6 +86,26 @@ export class ToDoArea {
       this.area.appendChild(inputElement); // appends the div element to the to-do-items-area
       toDoItemArea.toDoAreaItemCollection.push(toDoItem);
       console.log(toDoItemArea);
+
+      inputElement.addEventListener("mouseenter", function () {
+        const X = document.createElement("p");
+        X.innerText = "X";
+        inputElement.appendChild(X);
+
+        X.addEventListener("click", () => {
+          toDoItemArea.area.removeChild(inputElement); // this removes the to-do-item when the X is selected.
+        });
+      });
+
+      inputElement.addEventListener("mouseleave", function () {
+        const childrenElements = inputElement.children; // collects all of the children elements within the inputElement
+        const arrayOfChildrenElements = Array.from(childrenElements); // this conversts the above HTML collection into an array
+        arrayOfChildrenElements.forEach((child) => {
+          if (child.innerText === "X") {
+            inputElement.removeChild(child); // Remove the child element when the mouse leaves the parent element
+          }
+        }); // this loops through all of the elements and if the inner text is just "X" it will remove it.
+      });
     });
     input.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
