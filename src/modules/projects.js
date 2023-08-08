@@ -1,6 +1,6 @@
 import { ToDoArea } from "./UI";
 import { getTodaysDate } from "./date";
-
+import { toDoItemArea } from "../index";
 const { sideBar } = require("./UI"); // importing sidebar Object class
 
 export class Projects {
@@ -79,6 +79,15 @@ export class Projects {
       toDoAreaDateHeader.innerText = getTodaysDate();
 
       toDoAreaProjectHeader.innerText = projectElementTitle.textContent;
+
+      const toDoItemsGeneralCollection = toDoItemArea.toDoAreaItemCollection; //
+      toDoItemsGeneralCollection.forEach((toDo) => {
+        if (toDo.project != this.getTitle()) {
+          const inputElement = toDo.inputElement;
+          inputElement.style.display = "none";
+          // I need something here to reference the element tht is created from the to-do-item object so that I can rmeove it.
+        }
+      });
     }); // this allows for the projecs attribute to be refelcted in the to-do-area
 
     // method to create a project element and append it to the sidebar

@@ -48,7 +48,7 @@ export class ToDoArea {
     this.button = document.querySelector(".to-do-button");
   }
 
-  toDoAreaItemCollection = [];
+  toDoAreaItemCollection = []; // toDoItems get pushed here.
 
   getInput() {
     return this.input.value;
@@ -72,6 +72,7 @@ export class ToDoArea {
       projects.forEach((project) => {
         if (project.isActive == true) {
           project.toDoItems.push(toDoItem);
+          toDoItem.project = project.getTitle();
         }
       }); // this pushes the recently created to-do-item into the appropriate "active" project
       this.setInput(""); // this empties the input value area text after the button has been pressed.
@@ -85,7 +86,7 @@ export class ToDoArea {
       inputElement.appendChild(inputDate); // appends the date to the div element
       this.area.appendChild(inputElement); // appends the div element to the to-do-items-area
       toDoItemArea.toDoAreaItemCollection.push(toDoItem);
-      console.log(toDoItemArea);
+      toDoItem.inputElement.push(inputElement);
 
       inputElement.addEventListener("mouseenter", function () {
         const X = document.createElement("p");

@@ -4,7 +4,10 @@ export default class ToDoItems {
   constructor(description, date = getTodaysDate()) {
     this.description = description; // this is the text of the to-do-item generated from user input
     this.date = date; // this is the date that is going to be created on the to-do list based off the date that it was created.
+    this.project;
   }
+
+  inputElement = [];
 
   getDescription() {
     return this.description;

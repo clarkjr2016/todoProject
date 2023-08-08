@@ -142,6 +142,7 @@ nav {
   border: 1px solid black;
   border-radius: 40px;
   padding: 10px;
+  cursor: pointer;
 }
 
 .to-do-item :nth-child(2) {
