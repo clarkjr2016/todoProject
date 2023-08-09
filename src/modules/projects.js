@@ -80,11 +80,19 @@ export class Projects {
 
       toDoAreaProjectHeader.innerText = projectElementTitle.textContent;
 
-      const toDoItemsGeneralCollection = toDoItemArea.toDoAreaItemCollection; //
+      const toDoItemsGeneralCollection = toDoItemArea.toDoAreaItemCollection; //this is a variable for the toDoItem Object property that is storing all of the to-do-item objects whenever they are intially created. They are being created in the UI module.
       toDoItemsGeneralCollection.forEach((toDo) => {
+        const mySaviorVariable = document.querySelector(".to-do-items-area"); // selects the to-do-area
+        const mySaviorVariableCollection = mySaviorVariable.children; // collects the children which should be the to-do-items as they are generated
+        const mySaviorVariableArray = Array.from(mySaviorVariableCollection); // this transforms the collection of those children into an array
+
         if (toDo.project != this.getTitle()) {
-          const inputElement = toDo.inputElement;
-          inputElement.style.display = "none";
+          mySaviorVariableArray.forEach((variable) => {
+            if (variable == toDo.inputElement[0]) {
+              variable.style.display = "none";
+            }
+          });
+
           // I need something here to reference the element tht is created from the to-do-item object so that I can rmeove it.
         }
       });

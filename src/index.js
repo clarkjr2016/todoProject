@@ -39,6 +39,4 @@ console.log(addProjectBtn); // check to see if the button is created
 
 export const toDoItemArea = new ToDoArea(); // create a new to-do area
 
-console.log(toDoItemArea.getButton());
-
 toDoItemArea.render(); // render the to-do area

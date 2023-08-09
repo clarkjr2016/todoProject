@@ -86,7 +86,7 @@ export class ToDoArea {
       inputElement.appendChild(inputDate); // appends the date to the div element
       this.area.appendChild(inputElement); // appends the div element to the to-do-items-area
       toDoItemArea.toDoAreaItemCollection.push(toDoItem);
-      toDoItem.inputElement.push(inputElement);
+      toDoItem.inputElement.push(inputElement); // this pushes the input element that was derived from the objeect into the object's array collection area
 
       inputElement.addEventListener("mouseenter", function () {
         const X = document.createElement("p");
