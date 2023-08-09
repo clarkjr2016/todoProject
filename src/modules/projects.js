@@ -94,6 +94,12 @@ export class Projects {
           });
 
           // I need something here to reference the element tht is created from the to-do-item object so that I can rmeove it.
+        } else if (toDo.project == this.getTitle()) {
+          mySaviorVariableArray.forEach((variable) => {
+            if (variable == toDo.inputElement[0]) {
+              variable.style.display = "flex";
+            }
+          });
         }
       });
     }); // this allows for the projecs attribute to be refelcted in the to-do-area
@@ -103,9 +109,12 @@ export class Projects {
 } // Class used to construct the original 3 projects that will appear on the sidebar
 
 export class CreatedProjects extends Projects {
-  constructor(title) {
-    super(title);
+  constructor(title, picture, isActive) {
+    super(title, picture, isActive);
   }
+
+  toDoItems = []; // creating a property that is an empty array for future to-do-items to be placed in
+
   render(sideBar) {
     {
       const toDoArea = document.querySelector(".to-do-area"); // this selects the to-do-area element so that it can be manipulated
@@ -142,6 +151,29 @@ export class CreatedProjects extends Projects {
         let toDoAreaDateHeader = document.querySelector(".date-header"); // this selects the date header element so that it can be manipulated
         toDoAreaDateHeader.innerText = getTodaysDate(); // this sets the date header to the current date
         toDoAreaProjectHeader.innerText = projectElementTitle.textContent; // this sets the project header to the project title
+
+        const toDoItemsGeneralCollection = toDoItemArea.toDoAreaItemCollection; //this is a variable for the toDoItem Object property that is storing all of the to-do-item objects whenever they are intially created. They are being created in the UI module.
+        toDoItemsGeneralCollection.forEach((toDo) => {
+          const mySaviorVariable = document.querySelector(".to-do-items-area"); // selects the to-do-area
+          const mySaviorVariableCollection = mySaviorVariable.children; // collects the children which should be the to-do-items as they are generated
+          const mySaviorVariableArray = Array.from(mySaviorVariableCollection); // this transforms the collection of those children into an array
+
+          if (toDo.project != this.getTitle()) {
+            mySaviorVariableArray.forEach((variable) => {
+              if (variable == toDo.inputElement[0]) {
+                variable.style.display = "none";
+              }
+            });
+
+            // I need something here to reference the element tht is created from the to-do-item object so that I can rmeove it.
+          } else if (toDo.project == this.getTitle()) {
+            mySaviorVariableArray.forEach((variable) => {
+              if (variable == toDo.inputElement[0]) {
+                variable.style.display = "flex";
+              }
+            });
+          }
+        });
       }); // this allows for the projecs attribute to be refelcted in the to-do-area
 
       projectElementContainer.addEventListener("mouseenter", function () {
